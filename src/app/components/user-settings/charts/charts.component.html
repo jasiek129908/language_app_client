@@ -1,0 +1,23 @@
+<div #myIdentifier class="container">
+  <div class="max-width">
+    <ngx-charts-bar-vertical [results]="chartTimeData" [view]="view" [scheme]="colorScheme"
+      [schemeType]="schemeType" [gradient]="gradient" [xAxis]="xAxis" [yAxis]="yAxis" [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [animations]="animations"
+      [showGridLines]="showGridLines">
+    </ngx-charts-bar-vertical>
+  </div>
+
+  <div class="max-width">
+    <ngx-charts-line-chart [view]="view" [scheme]="colorScheme" [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis" [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yMistakesLabel" [results]="chartMistakesData">
+    </ngx-charts-line-chart>
+  </div>
+
+  <div class="max-width">
+    <ngx-charts-bar-vertical [results]="hardestWords" [view]="view" [scheme]="colorScheme" [schemeType]="schemeType"
+      [gradient]="gradient" [xAxis]="xAxis" [yAxis]="yAxis" [showXAxisLabel]="showXAxisLabel" [yAxisLabel]="yMistakesLabel"
+      [showYAxisLabel]="showYAxisLabel" [animations]="animations" [showGridLines]="showGridLines">
+    </ngx-charts-bar-vertical>
+  </div>
+</div>

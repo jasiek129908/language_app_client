@@ -1,0 +1,39 @@
+@import "./../../../../sharedStyles.scss";
+
+.content {
+  text-align: center;
+
+  .header{
+    padding-top: 1%;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .example-card {
+    background-color: darken($my-background-color, 30%);
+    margin: 10px 2%;
+    max-width: 350px;
+    display: inline-block;
+    overflow: hidden;
+  }
+
+  .card-description {
+    text-align: left;
+    max-height: 30px;
+    overflow: hidden;
+  }
+
+}
+
+mat-card {
+  position: relative;
+  min-height: 150px;
+  width: 300px;
+}
+
+.game-type{
+  padding-left: 10px;
+}
+.noContent{
+  padding-top: 5%;
+}

@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Czy chcesz zakceptowac?</h1>
+<div mat-dialog-content>
+  <p>Wyzwanie od uzytkownika <b>{{data.duelData.nickname}}</b></p>
+  <ng-container *ngIf="sharedWordSet">
+    <p>Język {{sharedWordSet.wordSet.toLanguage}}</p>
+    <p>Tytuł {{sharedWordSet.wordSet.title}}</p>
+    <p>Ilość słów {{sharedWordSet.wordSet.wordList.length}}</p>
+  </ng-container>
+</div>
+<div mat-dialog-actions>
+  <button class="button" mat-flat-button (click)="accept()">Zakacpetuj</button>
+  <button class="button" mat-flat-button (click)="reject()">Odrzuc</button>
+</div>

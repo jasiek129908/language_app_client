@@ -1,0 +1,50 @@
+<ng-container *ngIf="wordSet && wordSet.length>0;else noWordSet">
+  <div class="content">
+    <ng-container *ngFor="let wordSet of wordSet">
+      <mat-card class="example-card">
+        <mat-card-title-group>
+          <mat-card-title>{{wordSet.title}}</mat-card-title>
+          <mat-card-subtitle>{{wordSet.creationTime | date}}</mat-card-subtitle>
+          <p>Język: {{wordSet.toLanguage}}</p>
+        </mat-card-title-group>
+        <mat-card-content>
+          <div class="card-description" (click) ="showFullDescription(wordSet.description)">
+            {{wordSet.description}}
+          </div>
+        </mat-card-content>
+        <div class="card-buttons">
+          <button mat-raised-button [routerLink]="['/edit-course',wordSet.id]">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-raised-button (click)="openDeleteDialog(wordSet.id)">
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+          <button mat-raised-button [routerLink]="['/choose-game-type',wordSet.id]">
+            <mat-icon>sports_esports</mat-icon>
+          </button>
+          <button mat-raised-button [routerLink]="['/course-display',wordSet.id]">
+            <mat-icon>search</mat-icon>
+          </button>
+          <button mat-raised-button [ngClass]="{'shared':!wordSet.isShared,'unshare':wordSet.isShared}"
+            (click)="shareCourse(wordSet.id)">
+            <mat-icon>share</mat-icon>
+          </button>
+        </div>
+      </mat-card>
+    </ng-container>
+  </div>
+  <div class="paginator">
+    <button mat-flat-button (click)="previousPage()">
+      <mat-icon>arrow_back_ios</mat-icon>
+    </button>
+    <span>{{pageNumber}}/{{numberOfPages}}</span>
+    <button mat-flat-button (click)="nextPage()">
+      <mat-icon>arrow_forward_ios</mat-icon>
+    </button>
+  </div>
+</ng-container>
+<ng-template #noWordSet>
+  <div class="no-content">
+    <h2>Brak zestawów</h2>
+  </div>
+</ng-template>

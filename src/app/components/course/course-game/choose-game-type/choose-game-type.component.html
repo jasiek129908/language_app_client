@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="game-type">
+    <mat-card>
+      <mat-card-title-group>
+        <mat-card-title>Rozsypanka</mat-card-title>
+        <mat-icon mat-card-sm-image>translate</mat-icon>
+      </mat-card-title-group>
+      <mat-card-content>
+        Tryb gry polegający na ułożyniu z rozyspnaki słowa w obcym języku.
+        <div>
+          <button mat-raised-button [routerLink]="['/scatter-game',wordSetId]">
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="game-type">
+    <mat-card>
+      <mat-card-title-group>
+        <mat-card-title>Tłumaczenie</mat-card-title>
+        <mat-icon mat-card-sm-image>translate</mat-icon>
+      </mat-card-title-group>
+      <mat-card-content>
+        Tryb gry polegający na wybraniu odpowiedniego kafelka ze słowem w języku obcym.
+        <div>
+          <button mat-raised-button [routerLink]="['/translate-game',wordSetId]">
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="game-type">
+    <mat-card>
+      <mat-card-title-group>
+        <mat-card-title>Opis</mat-card-title>
+        <mat-icon mat-card-sm-image>translate</mat-icon>
+      </mat-card-title-group>
+      <mat-card-content>
+        Tryb gry polegający na wybraniu odpowiedniego kafelka z opisem słowa.
+        <div>
+          <button mat-raised-button [routerLink]="['/description-game',wordSetId]">
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+.comment {
+  position: relative;
+  padding: 1% 1% 1% 1%;
+  clear: both;
+
+  &-text {
+    float: left;
+    font-size: 15px;
+  }
+
+  &-signature {
+    float: right;
+    font-size: 10px;
+  }
+}
+
+.input {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  &-text {
+    min-height: 50px;
+    flex: 80%;
+    border: none;
+    padding: 0 0 0 0;
+    margin-left: 1%;
+  }
+
+  &-button {
+    flex: 20%;
+    margin: 0 2%;
+  }
+}

@@ -1,0 +1,160 @@
+@import "./../../../../sharedStyles.scss";
+
+.vote-up {
+  color: #18ed05;
+}
+
+.vote-down {
+  color: #fc1100;
+}
+
+.content {
+  padding: 1% 0;
+  text-align: center;
+}
+
+.card-description {
+  text-align: left;
+  max-height: 30px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+mat-card {
+  position: relative;
+  height: 140px;
+  min-width: 350px;
+}
+
+mat-card-subtitle,
+mat-card-title {
+  text-align: left;
+}
+
+.example-card {
+  background-color: darken($my-background-color, 30%);
+  margin: 10px 2%;
+  max-width: 350px;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.paginator {
+  text-align: center;
+}
+
+.card-buttons {
+  position: absolute;
+  bottom: 5%;
+}
+.card-buttons > mat-icon {
+  position: relative;
+  top: 7px;
+}
+
+mat-card button {
+  margin: 0 2px;
+}
+
+.shared {
+  color: #18ed05;
+}
+
+.unshare {
+  color: #fc1100;
+}
+
+.no-content {
+  display: flex;
+  justify-content: center;
+  padding-top: 20%;
+}
+
+.description-container {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.32);
+  position: absolute;
+  top: 0;
+
+  .description-header {
+    width: 100%;
+    padding: 2%;
+    text-align: center;
+  }
+
+  .full-description {
+    background-color: white;
+    overflow: hidden;
+    width: 20%;
+    margin: 15% auto auto auto;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .content {
+    padding: 0 0 0 0;
+    margin: 0 0 0 0;
+  }
+
+  mat-card {
+    height: 120px;
+    min-width: auto;
+    width: 93%;
+    padding: 5px 5px;
+
+    mat-card-title {
+      font-size: 20px;
+      padding: 0 0 0 0;
+      margin: 0 0 0 0;
+    }
+    mat-card-subtitle {
+      padding-top: 1px;
+      font-size: 13px;
+    }
+    p {
+      font-size: 15px;
+    }
+  }
+
+  .card-buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    right: 3px;
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 20px;
+      mat-icon {
+        position: relative;
+        top: 3px;
+        font-size: 17px;
+      }
+    }
+  }
+
+  .card-buttons > mat-icon {
+    position: relative;
+    font-size: 17px;
+    top: 3px;
+  }
+
+  .description-container {
+    .full-description {
+      background-color: white;
+      opacity: none;
+      width: 70%;
+      margin: 40% auto auto auto;
+    }
+  }
+}

@@ -1,0 +1,42 @@
+@import "../../../sharedStyles";
+
+.login {
+  position: relative;
+  margin: auto;
+  text-align: center;
+  margin: 10% 22% 0 22%;
+  padding-bottom: 20px;
+  background-color: $my-background-color;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+
+  p:first-child {
+    font-size: 25px;
+  }
+
+  &-header {
+    padding-top: 4%;
+    padding-bottom: 4%;
+  }
+}
+
+.form {
+  min-width: 150px;
+  max-width: 500px;
+  margin: auto;
+}
+
+.register-link {
+  position: absolute;
+  left: 7%;
+  bottom: 7%;
+  button {
+    background-color: darken($my-background-color, 20%);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .login {
+    margin: 10% 5% 0 5%;
+    padding-bottom: 30px;
+  }
+}

@@ -1,0 +1,54 @@
+<ng-container *ngIf="wordSet">
+  <div class="container">
+    <div class="flex">
+      <div class="flex-game">
+        <div class="word">
+          <div>{{correctWord.translation}}</div>
+        </div>
+
+        <div class="reveal_word">
+          <ng-container *ngFor="let letter of revealWord">
+            <span class="reveal_letter">
+              <ng-container *ngIf="letter!=='';else blankLetter">
+                {{letter}}
+              </ng-container>
+              <ng-template #blankLetter>
+                _
+              </ng-template>
+            </span>
+          </ng-container>
+        </div>
+
+        <div class="game">
+          <div class="buttons">
+            <ng-container *ngFor="let character of randomCharactersOfCurerntWord">
+              <div>
+                <button #button class="game-button" mat-raised-button
+                  (click)="checkCharacter($event,button)">{{character}}</button>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-stats">
+        <div class="game-statistic">
+          <div>
+            <p>
+              <mat-icon>timer</mat-icon> {{dateNow | date:'mm:ss'}}
+            </p>
+          </div>
+          <div>
+            <span style="color:#18ed05">{{gameProgress}}</span>/<span>{{wordSet.wordList.length}}</span>
+          </div>
+          <div>
+            <p style="color:#fc1100">
+              <mat-icon>error</mat-icon> {{mistakesCounter}}
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ng-container>

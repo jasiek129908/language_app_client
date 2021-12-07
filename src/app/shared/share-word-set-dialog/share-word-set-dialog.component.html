@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Udostepnienie</h1>
+<div mat-dialog-content>
+  <p *ngIf="sharedWordSet === null;else deleteSharing">Czy chcesz udostępnić zestaw?</p>
+  <ng-template #deleteSharing>
+    <p>Czy chcesz usunąć udostępnienie?</p>
+  </ng-template>
+
+</div>
+<div mat-dialog-actions>
+  <button class="button" mat-button (click)="onYesClick()">Tak</button>
+  <button class="button" mat-button (click)="onNoClick()">Nie</button>
+</div>

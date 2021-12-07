@@ -1,0 +1,41 @@
+<div>
+  <table class='calendar-table' *ngIf="calendar">
+    <thead>
+      <tr *ngIf="mediaSuffix!=='Xs'">
+        <th>Poniedziałek</th>
+        <th>Wtorek</th>
+        <th>Środa</th>
+        <th>Czwartek</th>
+        <th>Piątek</th>
+        <th>Sobota</th>
+        <th>Niedziela</th>
+      </tr>
+      <tr *ngIf="mediaSuffix==='Xs'">
+        <th>Pn</th>
+        <th>Wt</th>
+        <th>Śr</th>
+        <th>Czw</th>
+        <th>Pt</th>
+        <th>Sob</th>
+        <th>Niedz</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of calendar | chunk: 7">
+        <ng-container *ngFor="let c of row">
+          <td *ngIf="c!==null" class="calendar-day"
+            [ngClass]="{'blue-date': c.isToday, 'userWasActive':c.userWasActive,'past-date': c.isPastDate}">
+            <div class="calendar-day-header" [ngClass]="{'blue-date': c.isToday}">
+              <strong>{{c.date.getDate()}}</strong>
+              <strong [ngStyle]="{'font-size': mediaSuffix==='Xs'? '10px': ''}" *ngIf="(c.date.getDate() == 1)">
+                {{monthNames[c.date.getMonth()]}}</strong>
+            </div>
+          </td>
+          <td *ngIf="c===null" class="calendar-day past-date">
+
+          </td>
+        </ng-container>
+      </tr>
+    </tbody>
+  </table>
+</div>

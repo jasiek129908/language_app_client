@@ -1,0 +1,40 @@
+<ng-container *ngIf="wordSet">
+  <div class="container">
+    <div class="flex">
+      <div class="flex-game">
+
+        <div class="word">
+          <p>Słowo: {{correctWord.word}}</p>
+        </div>
+
+        <div class="game">
+          <div class="buttons">
+            <ng-container *ngFor="let description of gameListOfDescription">
+              <div class="game-button" (click)="checkWord(description)">
+                {{description}}
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex-stats">
+        <div class="game-statistic">
+          <div>
+            <p>
+              <mat-icon>timer</mat-icon> {{dateNow | date:'mm:ss'}}
+            </p>
+          </div>
+          <div>
+            <span style="color:#18ed05">{{gameProgress}}</span>/<span>{{wordSet.wordList.length}}</span>
+          </div>
+          <div>
+            <p style="color:#fc1100">
+              <mat-icon>error</mat-icon> {{mistakesCounter}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

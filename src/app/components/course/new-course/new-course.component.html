@@ -1,0 +1,94 @@
+<div class="newLang">
+  <form class="form">
+    <p style="font-weight: bold;padding:3% 0 3% 0">Nowy zestaw</p>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Język</mat-label>
+        <input type="text" matInput [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option.name}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Tytuł</mat-label>
+        <input #title2="ngModel" type="text" [(ngModel)]="title" [ngModelOptions]="{standalone: true}" matInput
+          required>
+      </mat-form-field>
+      <div>
+        <span *ngIf="title.length>=25" class="error-message">
+          Tytuł nie może mieć więcej niż 25 znaków
+        </span>
+        <span *ngIf="title2.touched && title.length==0" class="error-message">
+          Wprowadź tytuł
+        </span>
+      </div>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Opis</mat-label>
+        <textarea #desc="ngModel" [(ngModel)]="wordSetDescription" [ngModelOptions]="{standalone: true}" matInput
+          cdkTextareaAutosize required>
+      </textarea>
+      </mat-form-field>
+      <div>
+        <span *ngIf="desc.touched && wordSetDescription.length==0" class="error-message">
+          Wprowadź opis
+        </span>
+      </div>
+    </div>
+    <div class="header">
+      <p>Wprowadź słowa</p>
+    </div>
+    <div class="word-inputs">
+      <mat-form-field appearance="outline">
+        <mat-label>Słowo</mat-label>
+        <input [(ngModel)]="word" [ngModelOptions]="{standalone: true}" type="text"
+          matInput>
+        <!-- <input [(ngModel)]="word" [ngModelOptions]="{standalone: true}" (focusout)="translateWord($event)" type="text"
+          matInput> -->
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Tłumaczenie</mat-label>
+        <input [(ngModel)]="translation" [ngModelOptions]="{standalone: true}" type="text" matInput>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field appearance="outline" class="word-description">
+        <mat-label>Opis w twoim jezyku</mat-label>
+        <input [(ngModel)]="wordDescription" [ngModelOptions]="{standalone: true}" type="text" matInput>
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-raised-button (click)="pushWordToListAndRefreshTable()">Dodaj słowo</button>
+    </div>
+  </form>
+</div>
+<div>
+  <table mat-table matTableResponsive [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="word">
+      <th mat-header-cell *matHeaderCellDef> Słowo </th>
+      <td mat-cell *matCellDef="let element"> {{element.word}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="translation">
+      <th mat-header-cell *matHeaderCellDef> Tłumacznie </th>
+      <td mat-cell *matCellDef="let element"> {{element.translation}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Opis </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['word', 'translation', 'description']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['word', 'translation', 'description'];"></tr>
+  </table>
+  <div class="submit-button">
+    <button mat-raised-button (click)="saveWordSet()">Dodaj zestaw</button>
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<div class="login">
+  <p style="font-weight: bold;padding:3% 0 3% 0">Logowanie</p>
+  <form class="form" [formGroup]="loginForm" (ngSubmit)="login()">
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Emial</mat-label>
+        <input type="email" matInput email [formControlName]="'email'" name="user_emial" required>
+      </mat-form-field>
+      <div>
+        <span class="error-message" *ngIf="!loginForm.get('email')!.valid && loginForm.get('email')!.touched">
+          Please provide a valid email
+        </span>
+      </div>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Hasło</mat-label>
+        <input type="password" matInput [formControlName]="'password'" name="user_password" required>
+      </mat-form-field>
+      <div>
+        <span class="error-message" *ngIf="!loginForm.get('password')!.valid && loginForm.get('password')!.touched">
+          Please provide a password
+        </span>
+      </div>
+    </div>
+    <button style="margin-bottom: 12%;" mat-raised-button type="submit">Zaloguj się</button>
+  </form>
+  <div class="register-link">
+    <button mat-flat-button [routerLink]="['/register']">
+      Rejestracja
+    </button>
+  </div>
+</div>

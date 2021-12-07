@@ -1,0 +1,191 @@
+@import "../../sharedStyles";
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.searcher {
+  background-color: white;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+
+  &-input {
+    border-radius: 5px;
+    flex: 90%;
+    border: none;
+  }
+
+  &-input:focus {
+    outline: none;
+  }
+
+  &-button {
+    border: none;
+    background: darken($my-background-color, 10%);
+    cursor: pointer;
+  }
+
+  mat-icon {
+    flex: 10%;
+  }
+}
+
+.sorting {
+  padding-left: 5px;
+  font-size: 13px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filt-button {
+  border: none;
+  background-color: darken($my-primary-color, 10%);
+  margin-left: 5px;
+}
+
+.nav {
+  border-radius: 10px;
+  position: relative;
+  &-link {
+    margin-left: 10px;
+    background-color: darken($my-primary-color, 10%);
+    &:hover {
+      background-color: darken($my-primary-color, 20%);
+    }
+  }
+  &-icon {
+    padding-left: 10px;
+    padding-right: 10px;
+    transform: scale(1.5);
+  }
+}
+
+mat-sidenav-container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+}
+
+mat-sidenav {
+  width: 200px;
+  color: white;
+  text-align: center;
+}
+
+.is-active {
+  color: rgb(4, 194, 20);
+}
+
+.filterButton {
+  margin-left: 8px;
+}
+
+.filter {
+  position: absolute;
+  width: 80%;
+  margin: 2% 10% 0 10%;
+  height: fit-content;
+  background-color: $my-accent-color;
+  visibility: hidden;
+  z-index: 2;
+  text-align: center;
+  height: 20%;
+  overflow: hidden;
+
+  &-close-icon {
+    position: absolute;
+    right: 2.5%;
+    top: 10px;
+    font-size: 27px;
+    color: $my-primary-color;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &-input {
+    margin: 1%;
+    width: 90%;
+    padding: 5px;
+    border: none;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    &-language {
+      background-color: $my-primary-color;
+      margin: 2px 5px;
+      padding: 0 3px;
+      border-radius: 9%;
+    }
+
+    &-language:hover {
+      cursor: pointer;
+    }
+  }
+
+  input {
+    border: none;
+    background-color: white;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  &-languages {
+    margin-top: 1%;
+    overflow: hidden;
+    word-break: break-all;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-language {
+    padding: 2px 5px;
+    margin: 2px 5px;
+    background-color: white;
+    border-radius: 9%;
+  }
+  &-language:hover {
+    cursor: pointer;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .filter {
+    width: 85%;
+    margin: 2% 7.5% 0 7.5%;
+    border-radius: 5%;
+
+    &-close-icon {
+      position: absolute;
+      right: -0.5%;
+      top: 0;
+      font-size: 27px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &-input {
+      margin: 0;
+      width: 100%;
+      border: none;
+      background-color: white;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+  }
+}

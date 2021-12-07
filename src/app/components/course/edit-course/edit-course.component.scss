@@ -1,0 +1,105 @@
+@import "../../../../sharedStyles";
+
+.header {
+  font-weight: bold;
+  padding: 1% 0;
+}
+
+.word-description {
+  width: 83%;
+  text-align: center;
+}
+
+.word-inputs mat-form-field {
+  padding: 0 5px;
+}
+
+.newLang {
+  padding-top: 1%;
+  margin: auto;
+  text-align: center;
+  width: 60%;
+  margin-top: 50px;
+  padding-bottom: 25px;
+  background-color: $my-background-color;
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+}
+
+.submit-button {
+  text-align: center;
+  padding-top: 1%;
+}
+
+.table-description {
+  width: 90%;
+}
+
+table {
+  margin: auto;
+  width: 60%;
+  margin-top: 30px;
+  text-align: center;
+}
+
+table mat-form-field {
+  padding-top: 15px;
+  text-align: center;
+}
+
+.remove-icon:hover {
+  color: red;
+}
+
+.mat-column-description,
+.mat-column-word,
+.mat-column-translation,
+.mat-column-delete {
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  mat-form-field {
+    font-size: 14px;
+    width: 80%;
+  }
+
+  .mat-table[matTableResponsive] {
+    width: 100%;
+
+    mat-form-field {
+      margin-bottom: -1.25em;
+      padding: 0;
+      width: 100%;
+    }
+
+    .mat-column-delete[data-column-name] mat-icon {
+      position: relative;
+      left: 45%;
+    }
+
+    .mat-header-row {
+      display: none;
+    }
+
+    .mat-row {
+      td.mat-cell:not(.mat-column-actions) {
+        display: grid;
+        grid-template-columns: 30% 70%;
+        padding: 0.5rem;
+        text-align: right;
+        word-break: break-word;
+
+        &::before {
+          content: attr(data-column-name);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      &:not(:last-of-type) td:last-of-type {
+        border-bottom: 1rem solid darken($my-background-color, 10%);
+      }
+    }
+  }
+}

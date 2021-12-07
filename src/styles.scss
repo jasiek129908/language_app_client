@@ -1,1 +1,26 @@
-/* You can add global styles to this file, and also import other style files */
+@import "sharedStyles";
+
+body {
+  background-color: darken($my-background-color, 10%);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html,
+body {
+  margin:0px;
+  height:100%;
+}
+
+p {
+  margin: 0;
+}
+h2{
+  margin: 0;
+}
+
+.error-message {
+  font-size: 14px;
+  position: relative;
+  top: -10px;
+  color: red;
+}

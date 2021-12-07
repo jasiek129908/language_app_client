@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Pojedynek z graczem</h1>
+<div mat-dialog-content>
+  <ng-container *ngIf="!enemyExists;else timer">
+    <p>Wprowadź nazwę przeciwnika:</p>
+    <mat-form-field appearance="outline">
+      <input type="text" matInput [(ngModel)]="enemyNickname" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+  </ng-container>
+  <ng-template #timer>
+    <p>Użytkownik istnieje, ma 30 sekund na zakceptowanie pojedynku!</p>
+    <span>{{dateNow | date:'mm:ss'}}</span>
+  </ng-template>
+  <div>
+    <button class="button" mat-flat-button (click)="duelPlayer()">Wyzwij</button>
+  </div>
+</div>

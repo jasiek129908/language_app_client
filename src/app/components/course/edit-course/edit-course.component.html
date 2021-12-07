@@ -1,0 +1,78 @@
+<div class="newLang">
+  <form class="form" [formGroup]="formGroup">
+    <p class="header">Tytuł</p>
+    <mat-form-field appearance="outline">
+      <mat-label>Tytuł</mat-label>
+      <input type="text" formControlName="title" matInput required>
+    </mat-form-field>
+    <p class="header">Opis</p>
+    <mat-form-field appearance="outline">
+      <mat-label>Opis</mat-label>
+      <textarea formControlName="descriptionWordSet" matInput cdkTextareaAutosize></textarea>
+    </mat-form-field>
+    <p class="header">Wprowadź dane</p>
+    <div class="word-inputs">
+      <mat-form-field appearance="outline">
+        <mat-label>Słowo</mat-label>
+        <input [(ngModel)]="word" [ngModelOptions]="{standalone: true}" type="text" matInput>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Tłumaczenie</mat-label>
+        <input [(ngModel)]="translation" [ngModelOptions]="{standalone: true}" type="text" matInput>
+      </mat-form-field>
+      <div>
+        <mat-form-field appearance="outline" class="word-description">
+          <mat-label>Opis w twoim jezyku</mat-label>
+          <input [(ngModel)]="wordDescription" [ngModelOptions]="{standalone: true}" type="text" matInput>
+        </mat-form-field>
+      </div>
+    </div>
+    <div>
+      <button mat-raised-button (click)="pushWordToListAndRefreshTable()">Dodaj</button>
+    </div>
+  </form>
+</div>
+<div>
+  <table mat-table matSort matTableResponsive [dataSource]="dataSource">
+
+    <ng-container matColumnDef="word">
+      <th mat-header-cell *matHeaderCellDef>Słowo</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field appearance="outline">
+          <input [(ngModel)]="element.word" type="text" matInput>
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="translation">
+      <th mat-header-cell *matHeaderCellDef>Tłumacznie</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field appearance="outline">
+          <input [(ngModel)]="element.translation" type="text" matInput>
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Opis</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-form-field appearance="outline" class="table-description">
+          <input [(ngModel)]="element.description" type="text" matInput>
+        </mat-form-field>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>Usuń</th>
+      <td mat-cell *matCellDef="let element;let i = index">
+        <mat-icon class="remove-icon" (click)="deleteFromWords(i)">delete_forever</mat-icon>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['word', 'translation', 'description','delete']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['word', 'translation', 'description','delete'];"></tr>
+  </table>
+</div>
+<div class="submit-button">
+  <button mat-raised-button (click)="updateWordSet()">Zapisz zmiany</button>
+</div>

@@ -1,0 +1,136 @@
+<div class="nav">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span class="material-icons nav-icon" color="accent">school</span>
+      <!-- jesli jest wiekszy od Sm -->
+      <ng-container *ngIf="innerWidth>=1100">
+        <ng-container *ngIf="shouldDisplaySearcherAndFilters()===true">
+          <div class="searcher">
+            <input type="text" class="searcher-input" (input)="changeSearch($event)" placeholder="Wyszukaj">
+            <mat-icon>search</mat-icon>
+          </div>
+          <div class="sorting">
+            <mat-form-field>
+              <mat-select (selectionChange)="sortingChanged($event.value)" [(value)]="defaultValue">
+                <mat-option *ngFor="let option of getSortingOptions()" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <button class="filterButton" mat-flat-button (click)="openFilterWindow()">
+            <mat-icon>filter_list</mat-icon>Filtr
+          </button>
+        </ng-container>
+
+        <span class="spacer"></span>
+        <a class="nav-link" mat-button routerLink="/new-course" [routerLinkActive]="['is-active']">Nowy zestaw</a>
+        <a class="nav-link" mat-button routerLink="/shared-courses" [routerLinkActive]="['is-active']">Udostępnione
+          zestawy</a>
+        <a class="nav-link" mat-button routerLink="/courses" [routerLinkActive]="['is-active']">Moje zestawy</a>
+
+        <ng-container *ngIf="userNick;else logOut">
+          <a class="nav-link" [matMenuTriggerFor]="menu" mat-button
+            [ngClass]="{'is-active':isActive()===true}">{{userNick}}</a>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item routerLink="/user-settings">Użytkownik</button>
+            <button mat-menu-item (click)="logout()">Wyloguj się</button>
+          </mat-menu>
+        </ng-container>
+
+        <ng-template #logOut>
+          <a class="nav-link" mat-button routerLink="/login">Zaloguj się</a>
+        </ng-template>
+
+      </ng-container>
+
+      <ng-container *ngIf="innerWidth>600 && innerWidth<1100">
+        <button mat-icon-button (click)="snav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <ng-container *ngIf="shouldDisplaySearcherAndFilters()===true">
+          <div class="searcher">
+            <input type="text" class="searcher-input" (input)="changeSearch($event)" placeholder="Wyszukaj">
+            <mat-icon>search</mat-icon>
+          </div>
+          <div class="sorting">
+            <mat-form-field>
+              <mat-select (selectionChange)="sortingChanged($event.value)" [(value)]="defaultValue">
+                <mat-option *ngFor="let option of getSortingOptions()" [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <button class="filterButton" mat-flat-button (click)="openFilterWindow()">
+            <mat-icon>filter_list</mat-icon>Filtr
+          </button>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngIf="innerWidth<600">
+        <button mat-icon-button (click)="snav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <ng-container *ngIf="shouldDisplaySearcherAndFilters()===true">
+          <div class="searcher">
+            <input type="text" class="searcher-input" (input)="changeSearch($event)" placeholder="Wyszukaj">
+            <mat-icon>search</mat-icon>
+          </div>
+        </ng-container>
+      </ng-container>
+    </mat-toolbar-row>
+
+    <mat-toolbar-row *ngIf="innerWidth<600 && shouldDisplaySearcherAndFilters()===true">
+      <div class="sorting">
+        <mat-form-field>
+          <mat-select (selectionChange)="sortingChanged($event.value)" [(value)]="defaultValue">
+            <mat-option *ngFor="let option of getSortingOptions()" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button class="filterButton" mat-flat-button (click)="openFilterWindow()">
+          <mat-icon>filter_list</mat-icon>Filtr
+        </button>
+      </div>
+    </mat-toolbar-row>
+
+  </mat-toolbar>
+
+  <mat-sidenav-container>
+    <mat-sidenav #snav>
+      <mat-nav-list>
+        <a class="mat-list-item" mat-button routerLink="/new-course" [routerLinkActive]="['is-active']">Nowy zestaw</a>
+        <a class="mat-list-item" mat-button routerLink="/shared-courses" [routerLinkActive]="['is-active']">Udostępnione
+          zestawy</a>
+        <a class="mat-list-item" mat-button routerLink="/courses" [routerLinkActive]="['is-active']">Moje zestawy</a>
+        <ng-container *ngIf="userNick;else logOut">
+          <a class="mat-list-item" mat-button routerLink="user-settings"
+            [routerLinkActive]="['is-active']">Użytkownik</a>
+          <a class="mat-list-item" mat-button (click)="logout()">Wyloguj się</a>
+        </ng-container>
+
+        <ng-template #logOut>
+          <a class="mat-list-item" routerLink="/login" mat-button>Zaloguj się</a>
+        </ng-template>
+
+      </mat-nav-list>
+    </mat-sidenav>
+  </mat-sidenav-container>
+</div>
+
+<div #filter class="filter">
+  <mat-icon class="filter-close-icon" (click)="openFilterWindow()" mat-flat-button>close</mat-icon>
+  <div class="filter-input">
+    <ng-container *ngFor="let country of languagesToFilter">
+      <span (click)="removeFilter(country)" class="filter-input-language">{{country}}</span>
+    </ng-container>
+    <input placeholder="Wprowadź język" type="text" [formControl]="myControl" autocomplete="off">
+  </div>
+  <div class="filter-languages">
+    <ng-container *ngFor="let country of filteredOptions | async">
+      <span (click)="addFilter(country.name)" class="filter-language">{{country.name}}</span>
+    </ng-container>
+  </div>
+</div>

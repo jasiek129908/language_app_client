@@ -1,0 +1,14 @@
+<div style="margin-bottom: 20%;">
+  <ng-container *ngFor="let comment of commentList">
+    <div class="comment">
+      <div class="comment-text">{{comment.comment}}</div>
+      <div class="comment-signature">{{comment.creationDate | date}} {{comment.authorNickName}}</div>
+    </div>
+  </ng-container>
+  <div class="input">
+    <textarea class="input-text" [(ngModel)]="comment"></textarea>
+    <button class="input-button" mat-flat-button (click)="addComment()">
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="register">
+  <p style="font-weight: bold;padding:3% 0 3% 0">Rejestracja</p>
+  <form class="form" [formGroup]="registerForm" (ngSubmit)="register()">
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Emial</mat-label>
+        <input type="email" matInput email [formControlName]="'email'" required>
+      </mat-form-field>
+      <div>
+        <span class="error-message" *ngIf="!registerForm.get('email')!.valid && registerForm.get('email')!.touched">
+          Podaj email
+        </span>
+      </div>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Hasło</mat-label>
+        <input type="password" matInput [formControlName]="'password'" required>
+      </mat-form-field>
+      <div>
+        <span class="error-message" *ngIf="!registerForm.get('password')!.valid && registerForm.get('password')!.touched">
+          Podaj hasło
+        </span>
+      </div>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Potwierdź hasło</mat-label>
+        <input type="password" matInput (focusout)="focusoutPasswordConfirmation=true"
+          [formControlName]="'confirmPassword'" required>
+      </mat-form-field>
+      <div>
+        <span class="error-message" *ngIf="focusoutPasswordConfirmation && registerForm.errors?.passwordDifrent">
+          Wprowadzone hasła się różnią!
+        </span>
+      </div>
+    </div>
+    <div>
+      <mat-form-field appearance="outline">
+        <mat-label>Nazwa na portalu</mat-label>
+        <input type="text" matInput [formControlName]="'nickName'" required>
+      </mat-form-field>
+      <div>
+        <span class="error-message" *ngIf="!registerForm.get('nickName')!.valid && registerForm.get('nickName')!.touched">
+          Wprowadź nazwę na portalu
+        </span>
+      </div>
+    </div>
+    <button mat-raised-button [disabled]="!registerForm.valid" type="submit">Zarejestruj</button>
+  </form>
+</div>

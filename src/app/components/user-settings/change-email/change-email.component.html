@@ -1,0 +1,20 @@
+<div class="content">
+  <h4>Zmiana email</h4>
+  <p class="old-email">Obecny email: {{oldEmail}}</p>
+  <div>
+    <form [formGroup]="newEmailGroup" (submit)="changeEmail()">
+      <mat-form-field appearance="outline">
+        <mat-label>Nowy email</mat-label>
+        <input matInput type="email" formControlName="newEmail" required>
+      </mat-form-field>
+      <div>
+        <span class="error-message" *ngIf="newEmailGroup.get('newEmail')?.errors && newEmailGroup.get('newEmail')?.touched">
+          Wprowadź poprwany email
+        </span>
+      </div>
+      <div>
+        <button mat-flat-button type="submit" [disabled]="!newEmailGroup.valid">Zmień</button>
+      </div>
+    </form>
+  </div>
+</div>

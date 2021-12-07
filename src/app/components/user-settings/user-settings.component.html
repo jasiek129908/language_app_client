@@ -1,0 +1,46 @@
+<mat-sidenav-container *ngIf="mediaSuffix!=='Xs'">
+  <mat-sidenav #sidenav mode="side" opened="true" *ngIf="mediaSuffix!=='Xs'">
+    <mat-nav-list>
+
+      <mat-list-item [routerLink]="'./changePassword'">
+        <mat-icon mat-list-icon>password</mat-icon>
+        <span>Zmień hasło</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'./changeNickname'">
+        <mat-icon mat-list-icon>badge</mat-icon>
+        <span>Zmień nick</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'./changeEmail'">
+        <mat-icon mat-list-icon>alternate_email</mat-icon>
+        <span>Zmień emial</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'./statistic'">
+        <mat-icon mat-list-icon>show_chart</mat-icon>
+        <span>Statystyki</span>
+      </mat-list-item>
+
+      <mat-list-item [routerLink]="'./activity'">
+        <mat-icon mat-list-icon>calendar_month</mat-icon>
+        <span>Aktywność</span>
+      </mat-list-item>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>
+
+<ng-container *ngIf="mediaSuffix==='Xs'">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-evenly center">
+      <button class="setting-button" mat-flat-button [routerLink]="'./changePassword'">Hasło</button>
+      <button class="setting-button" mat-flat-button [routerLink]="'./changeNickname'">Nick</button>
+      <button class="setting-button" mat-flat-button [routerLink]="'./changeEmail'">Emial</button>
+      <button class="setting-button" mat-flat-button [routerLink]="'./statistic'">Statystyki</button>
+      <button class="setting-button" mat-flat-button [routerLink]="'./activity'">Aktywność</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <router-outlet></router-outlet>
+</ng-container>

@@ -1,0 +1,11 @@
+<div class="content">
+  <h4>Zmiana nazwy użytkowniak</h4>
+  <p class="old-nickname">Obecna nazwa: {{oldNickname}}</p>
+  <div>
+    <mat-form-field appearance="outline">
+      <mat-label>Nowa nazwa</mat-label>
+      <input #nick="ngModel" matInput [(ngModel)]="newNickname" required>
+    </mat-form-field>
+  </div>
+  <button mat-flat-button [disabled]="!nick.valid" (click)="changeNickname()">Zmień</button>
+</div>

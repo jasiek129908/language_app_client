@@ -1,0 +1,31 @@
+.container {
+  margin-top: 10%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.game-type {
+  text-align: center;
+  padding-top: 4%;
+}
+mat-card-title-group{
+  max-height: 40px;
+}
+mat-card{
+  min-width: 550px;
+}
+
+mat-card button{
+  margin-top: 10px;
+}
+
+@media only screen and (max-width:600px) {
+
+  mat-card{
+    min-width: unset;
+    width: 250px;
+  }
+
+}

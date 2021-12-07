@@ -1,0 +1,37 @@
+<div class="content">
+  <p class="header">Twoje statystki</p>
+  <mat-radio-group [(ngModel)]="gameType" (change)="fetchWordSetWithProperType()">
+    <mat-radio-button class="game-type" *ngFor="let gameTypeObj of gameTypes" [value]="gameTypeObj.type">
+      {{gameTypeObj.type}}
+    </mat-radio-button>
+  </mat-radio-group>
+
+  <div>
+    <ng-container *ngIf="allUserWordSet && allUserWordSet.length>0;else noStats">
+      <div>
+        <ng-container *ngFor="let wordSet of allUserWordSet">
+          <mat-card class="example-card">
+            <mat-card-title-group>
+              <mat-card-title>{{wordSet.title}}</mat-card-title>
+              <mat-card-subtitle>{{wordSet.creationTime | date}}</mat-card-subtitle>
+              <p>Język: {{wordSet.toLanguage}}</p>
+            </mat-card-title-group>
+            <mat-card-content>
+              <div class="card-description">
+                {{wordSet.description}}
+              </div>
+            </mat-card-content>
+            <div>
+              <button mat-raised-button [routerLink]="['../charts/',wordSet.id,serverType]">
+                <p>Wykresy</p>
+              </button>
+            </div>
+          </mat-card>
+        </ng-container>
+      </div>
+    </ng-container>
+    <ng-template #noStats>
+      <p class="noContent">Nie posiadasz statystyk dla tego trybu rozgrywki</p>
+    </ng-template>
+  </div>
+</div>

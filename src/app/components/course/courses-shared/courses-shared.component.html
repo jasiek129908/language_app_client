@@ -1,0 +1,50 @@
+<ng-container *ngIf="sharedWordSet;else noSharedWordSet">
+<div class="content">
+  <ng-container *ngFor="let sharedWordSet of sharedWordSet">
+    <mat-card class="example-card">
+      <mat-card-title-group>
+        <mat-card-title>{{sharedWordSet.wordSet.title}}</mat-card-title>
+        <mat-card-subtitle>{{sharedWordSet.author}} {{sharedWordSet.wordSet.creationTime | date}}</mat-card-subtitle>
+        <p>Język: {{sharedWordSet.wordSet.toLanguage}}</p>
+      </mat-card-title-group>
+      <mat-card-content>
+        <div class="card-description" (click) ="showFullDescription(sharedWordSet.wordSet.description)">
+          {{sharedWordSet.wordSet.description}}
+        </div>
+      </mat-card-content>
+      <div class="card-buttons">
+        <mat-icon (click)="likeWordSet(sharedWordSet.id)" [ngClass]="{'vote-up':voteIsUp(sharedWordSet.id)===true}">thumb_up</mat-icon>
+        {{sharedWordSet.likesCount}}
+        <mat-icon (click)="dislikeWordSet(sharedWordSet.id)" [ngClass]="{'vote-down':voteIsUp(sharedWordSet.id)===false}">thumb_down</mat-icon>
+        <button mat-raised-button [routerLink]="['/comments',sharedWordSet.id]">
+          <mat-icon>comment</mat-icon>
+        </button>
+        <button mat-raised-button [routerLink]="['/choose-game-type',sharedWordSet.wordSet.id]">
+          <mat-icon>sports_esports</mat-icon>
+        </button>
+        <button mat-raised-button [routerLink]="['/course-display',sharedWordSet.wordSet.id]">
+          <mat-icon>search</mat-icon>
+        </button>
+        <button mat-raised-button (click)="contestPlayerDialog(sharedWordSet.id)">
+          <mat-icon>person</mat-icon>
+        </button>
+      </div>
+    </mat-card>
+  </ng-container>
+</div>
+<div class="paginator">
+  <button mat-flat-button (click)="previousPage()">
+    <mat-icon>arrow_back_ios</mat-icon>
+  </button>
+  <span>{{pageNumber}}/{{numberOfPages}}</span>
+  <button mat-flat-button (click)="nextPage()">
+    <mat-icon>arrow_forward_ios</mat-icon>
+  </button>
+</div>
+</ng-container>
+<ng-template #noSharedWordSet>
+  <div class="no-content">
+    <h2>Brak zestawów</h2>
+  </div>
+</ng-template>
+

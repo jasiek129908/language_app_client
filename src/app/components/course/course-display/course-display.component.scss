@@ -1,0 +1,97 @@
+@import "../../../../sharedStyles";
+
+.header {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.course {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: auto;
+  text-align: center;
+  width: 60%;
+  margin-top: 20px;
+  font-size: 25px;
+  overflow: hidden;
+  mat-icon {
+    position: relative;
+    right: 3px;
+    top: 3px;
+  }
+}
+
+.table {
+  position: relative;
+  margin-top: 30px;
+
+  .type-button {
+    position: absolute;
+    top: -30px;
+    right: 18.5%;
+    background-color: $my-primary-color;
+  }
+
+  table {
+    margin: auto;
+    width: 60%;
+  }
+}
+
+.slajder {
+  position: relative;
+  width: 60%;
+  margin: 30px auto 0 auto;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+
+  .row {
+    padding: 18px 0;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  .header {
+    color: #949494;
+    font-size: 0.75em;
+  }
+
+  .type-button {
+    position: absolute;
+    top: -30px;
+    right: -2.5%;
+    background-color: $my-primary-color;
+  }
+
+  .navigation {
+    text-align: center;
+    padding: 1% 0;
+    a {
+      margin: 0 1% 0 2%;
+    }
+  }
+}
+
+.mat-column-description,
+.mat-column-word,
+.mat-column-translation {
+  text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+  .table {
+    width: 100%;
+    .type-button {
+      right: 0%;
+    }
+    table {
+      width: 100%;
+      margin: 0px 0px 0px 0px;
+      box-shadow: none;
+    }
+  }
+  .header {
+    font-size: 20px;
+  }
+}

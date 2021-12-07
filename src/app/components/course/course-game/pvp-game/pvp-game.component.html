@@ -1,0 +1,105 @@
+<div class="main-container">
+  <div #oponentProgres class="progress">
+    <div class="progress-header">
+      <p>Progres oponeta</p>
+    </div>
+    <ng-container *ngFor="let done of enemyTaskDone">
+      <div class="task" [ngClass]="{ task__colorDone: done, task__colorNotDone: !done }">
+        <ng-container *ngIf="done; else notDone">
+          <mat-icon>done</mat-icon>
+        </ng-container>
+
+        <ng-template #notDone>
+          <mat-icon>close</mat-icon>
+        </ng-template>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="container">
+    <div class="flex">
+      <div class="flex-game">
+        <ng-container *ngIf="currentGameType === 'SCATTER'">
+          <div class="word">
+            <div>{{correctWord.translation}}</div>
+          </div>
+
+          <div class="reveal_word">
+            <ng-container *ngFor="let letter of revealWord">
+              <span class="reveal_letter">
+                <ng-container *ngIf="letter!=='';else blankLetter">
+                  {{letter}}
+                </ng-container>
+                <ng-template #blankLetter>
+                  _
+                </ng-template>
+              </span>
+            </ng-container>
+          </div>
+
+          <div class="game">
+            <div class="buttons">
+              <ng-container *ngFor="let character of randomCharactersOfCurerntWord">
+                <div>
+                  <button #button class="game-button" mat-raised-button
+                    (click)="checkCharacter($event,button)">{{character}}</button>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="currentGameType === 'DESCRIPTION'">
+          <div class="word">
+            <p>Słowo: {{correctWord.word}}</p>
+          </div>
+
+          <div class="game">
+            <div class="buttons">
+              <ng-container *ngFor="let description of gameListOfDescription">
+                <div class="game-button game-button-description" (click)="checkDescription(description)">
+                  {{description}}
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </ng-container>
+
+
+        <ng-container *ngIf="currentGameType === 'TRANSLATION'">
+          <div class="word">
+            <p>Tłumaczenie: {{correctWord.translation}}</p>
+          </div>
+
+          <div class="game">
+            <div class="buttons">
+              <ng-container *ngFor="let word of gameListOfTranslation">
+                <div class="game-button" (click)="checkTransaltion(word)">
+                  {{word}}
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="flex-stats">
+        <div class="game-statistic">
+          <div>
+            <p>
+              <mat-icon>timer</mat-icon> {{dateNow | date:'mm:ss'}}
+            </p>
+          </div>
+          <div>
+            <span style="color:#18ed05">{{gameProgress}}</span>/<span>{{sharedWordSet.wordSet.wordList.length}}</span>
+          </div>
+          <div>
+            <p style="color:#fc1100">
+              <mat-icon>error</mat-icon> {{mistakesCounter}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
